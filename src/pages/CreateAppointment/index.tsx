@@ -59,7 +59,13 @@ const CreateAppointment: React.FC = () => {
           <Icon name="chevron-left" size={24} color="#999591" />
         </BackButton>
         <HeaderTitle>Cabeleireiros</HeaderTitle>
-        <UserAvatar source={{ uri: user.avatar_url }} />
+        <UserAvatar
+          source={{
+            uri:
+              user.avatar_url ||
+              'https://app-gobarber-ruan.s3.amazonaws.com/user.png',
+          }}
+        />
       </Header>
 
       <ProvidersListContainer>
@@ -74,7 +80,9 @@ const CreateAppointment: React.FC = () => {
             >
               <ProviderAvatar
                 source={{
-                  uri: provider.avatar_url,
+                  uri:
+                    provider.avatar_url ||
+                    'https://app-gobarber-ruan.s3.amazonaws.com/user.png',
                 }}
               />
               <ProviderName selected={provider.id === selectedProvider}>

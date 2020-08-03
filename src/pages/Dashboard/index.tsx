@@ -63,7 +63,9 @@ const Dashboard: React.FC = () => {
         <ProfileButton onPress={navigateToProfile}>
           <UserAvatar
             source={{
-              uri: user.avatar_url,
+              uri:
+                user.avatar_url ||
+                'https://app-gobarber-ruan.s3.amazonaws.com/user.png',
             }}
           />
         </ProfileButton>
@@ -82,7 +84,9 @@ const Dashboard: React.FC = () => {
           >
             <ProviderAvatar
               source={{
-                uri: provider.avatar_url,
+                uri:
+                  provider.avatar_url ||
+                  'https://app-gobarber-ruan.s3.amazonaws.com/user.png',
               }}
             />
             <ProviderInfo>
