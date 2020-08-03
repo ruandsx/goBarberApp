@@ -35,15 +35,22 @@ const Dashboard: React.FC = () => {
   const { user } = useAuth();
   const { navigate } = useNavigation();
 
-  const navigateToProfile = useCallback(() => {
-    navigate('Profile');
-  }, [navigate]);
-
   useEffect(() => {
     api.get('/providers').then((response) => {
       setProviders(response.data);
     });
   }, []);
+
+  const navigateToProfile = useCallback(() => {
+    navigate('Profile');
+  }, [navigate]);
+
+  const navigateToCreateAppointment = useCallback(
+    (providerId: string) => {
+      navigate('CreateAppointment', { providerId });
+    },
+    [navigate],
+  );
 
   return (
     <Container>
@@ -66,7 +73,7 @@ const Dashboard: React.FC = () => {
         renderItem={({ item: provider }) => (
           <ProviderContainer
             onPress={() => {
-              console.log(provider.id);
+              navigateToCreateAppointment(provider.id);
             }}
           >
             <ProviderAvatar source={{ uri: provider.avatar_url }} />
