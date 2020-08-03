@@ -12,12 +12,6 @@ export const BackButton = styled.TouchableOpacity`
   margin-top: 100px;
 `;
 
-export const SignOutButton = styled.TouchableOpacity`
-  position: absolute;
-  top: 60px;
-  right: 20px;
-`;
-
 export const Title = styled.Text`
   font-size: 20px;
   color: #f4ede8;
