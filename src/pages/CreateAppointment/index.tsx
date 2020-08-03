@@ -34,12 +34,19 @@ export interface Provider {
   avatar_url: string;
 }
 
+interface AvailabilityItem {
+  hour: number;
+  available: boolean;
+}
+
 const CreateAppointment: React.FC = () => {
   const route = useRoute();
   const { user } = useAuth();
   const { goBack } = useNavigation();
 
   const { providerId } = route.params as RouteParams;
+
+  const [availability, setAvailability] = useState<AvailabilityItem[]>([]);
 
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [selectedDate, setSelecedDate] = useState(new Date());
@@ -76,6 +83,20 @@ const CreateAppointment: React.FC = () => {
     },
     [],
   );
+
+  useEffect(() => {
+    api
+      .get(`providers/day-availability/${selectedProvider}`, {
+        params: {
+          year: selectedDate.getFullYear(),
+          month: selectedDate.getMonth() + 1,
+          day: selectedDate.getDate(),
+        },
+      })
+      .then((response) => {
+        setAvailability(response.data);
+      });
+  }, [selectedDate, selectedProvider]);
 
   return (
     <Container>
