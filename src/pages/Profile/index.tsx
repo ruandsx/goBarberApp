@@ -27,6 +27,7 @@ import {
   UserAvatarButton,
   UserAvatar,
   SignOutButton,
+  SignOutIcon,
   SignOutButtonText,
 } from './styles';
 
@@ -193,7 +194,7 @@ const Profile: React.FC = () => {
               />
             </UserAvatarButton>
             <View>
-              <Title>Meu perfil</Title>
+              <Title>Meu Perfil</Title>
             </View>
 
             <Form
@@ -259,7 +260,8 @@ const Profile: React.FC = () => {
               </Button>
             </Form>
             <SignOutButton onPress={signOut}>
-              <SignOutButtonText>Sair do Aplicativo</SignOutButtonText>
+              <SignOutIcon name="log-out" />
+              <SignOutButtonText>Sair da Conta</SignOutButtonText>
             </SignOutButton>
           </Container>
         </ScrollView>

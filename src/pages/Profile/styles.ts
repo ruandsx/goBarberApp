@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import Icon from 'react-native-vector-icons/Feather';
 
 export const Container = styled.View`
   flex: 1;
@@ -37,6 +38,14 @@ export const SignOutButton = styled.TouchableOpacity`
 
   justify-content: center;
   align-items: center;
+  flex-direction: row;
+`;
+
+export const SignOutIcon = styled(Icon)`
+  font-family: 'RobotoSlab-Medium';
+  color: #fff;
+  font-size: 18px;
+  margin-right: 8px;
 `;
 
 export const SignOutButtonText = styled.Text`
