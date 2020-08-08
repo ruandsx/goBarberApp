@@ -1,15 +1,14 @@
 import styled from 'styled-components/native';
-import { Platform } from 'react-native';
 
 export const Container = styled.View`
   flex: 1;
   position: relative;
   justify-content: center;
-  padding: 0 30px ${Platform.OS === 'android' ? 80 : 40}px;
+  padding: 0 30px 40px;
 `;
 
 export const BackButton = styled.TouchableOpacity`
-  margin-top: 100px;
+  margin-top: 60px;
 `;
 
 export const Title = styled.Text`
@@ -27,4 +26,21 @@ export const UserAvatar = styled.Image`
   border-radius: 96px;
 
   align-self: center;
+`;
+
+export const SignOutButton = styled.TouchableOpacity`
+  width: 100%;
+  height: 60px;
+  background: #3e3b47;
+  border-radius: 10px;
+  margin-top: 8px;
+
+  justify-content: center;
+  align-items: center;
+`;
+
+export const SignOutButtonText = styled.Text`
+  font-family: 'RobotoSlab-Medium';
+  color: #fff;
+  font-size: 18px;
 `;
