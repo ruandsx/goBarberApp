@@ -26,6 +26,9 @@ import {
   Title,
   UserAvatarButton,
   UserAvatar,
+  SignOutButton,
+  SignOutIcon,
+  SignOutButtonText,
 } from './styles';
 
 import Input from '../../components/Input';
@@ -40,7 +43,7 @@ interface ProfileFormData {
 }
 
 const Profile: React.FC = () => {
-  const { user, updateUser } = useAuth();
+  const { user, updateUser, signOut } = useAuth();
 
   const formRef = useRef<FormHandles>(null);
   const emailInputRef = useRef<TextInput>(null);
@@ -134,7 +137,9 @@ const Profile: React.FC = () => {
         cancelButtonTitle: 'Cancelar',
         takePhotoButtonTitle: 'Usar câmera',
         chooseFromLibraryButtonTitle: 'Escolher da galeria',
-        chooseWhichLibraryTitle: 'Escolher álbum',
+        chooseWhichLibraryTitle: 'Escolher aplicativo',
+        maxHeight: 200,
+        maxWidth: 200,
       },
       (response) => {
         if (response.didCancel) {
@@ -173,20 +178,23 @@ const Profile: React.FC = () => {
         enabled
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
       >
-        <ScrollView
-          keyboardShouldPersistTaps="handled"
-          contentContainerStyle={{ flex: 1 }}
-        >
+        <ScrollView keyboardShouldPersistTaps="handled">
           <Container>
             <BackButton onPress={handleGoBack}>
               <Icon name="chevron-left" size={24} color="#999591" />
             </BackButton>
 
             <UserAvatarButton onPress={handleUpdateAvatar}>
-              <UserAvatar source={{ uri: user.avatar_url }} />
+              <UserAvatar
+                source={{
+                  uri:
+                    user.avatar_url ||
+                    'https://app-gobarber-ruan.s3.amazonaws.com/user.png',
+                }}
+              />
             </UserAvatarButton>
             <View>
-              <Title>Meu perfil</Title>
+              <Title>Meu Perfil</Title>
             </View>
 
             <Form
@@ -251,6 +259,10 @@ const Profile: React.FC = () => {
                 Confirmar Mudanças
               </Button>
             </Form>
+            <SignOutButton onPress={signOut}>
+              <SignOutIcon name="log-out" />
+              <SignOutButtonText>Sair da Conta</SignOutButtonText>
+            </SignOutButton>
           </Container>
         </ScrollView>
       </KeyboardAvoidingView>
